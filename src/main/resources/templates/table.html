@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Таблицы</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/main.css" th:href="@{main.css}">
+</head>
+<body class="text-center">
+<div class="container">
+    <br>
+    <h1 class="cover-heading" style="color: #198754; font-weight: bold; font-size: 45px">Список услуг</h1>
+    <p class="lead">Весь спектр представленных операций</p>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Номер договора <input type="text" placeholder="Фильтр..." id="contractFilter"></th>
+            <th>Наименование услуги <input type="text" placeholder="Фильтр..." id="serviceNameFilter"></th>
+            <th>Срок оказания <input type="text" placeholder="Фильтр..." id="dateFilter"></th>
+            <th>Тип <input type="text" id="typeFilter" placeholder="Фильтр..."></th>
+            <th>Результат комиссии <input type="text" placeholder="Фильтр..." id="commissionResultFilter"></th>
+            <th>Долг <input type="text" placeholder="Фильтр..." id="debtFilter"></th>
+        </tr>
+        </thead>
+        <tbody class="table_elem" id="tableBody">
+        <tr th:each="service : ${list.services_list}">
+            <td th:text="${service.contract_num}"></td>
+            <td th:text="${service.service_name}"></td>
+            <td th:text="${service.date}"></td>
+            <td th:text="${service.type}"></td>
+            <td th:text="${service.comission_result}"></td>
+            <td th:text="${service.debt}"></td>
+        </tbody>
+    </table>
+</div>
+<a href="/" class="btn btn-lg btn-outline-success fixed-bottom-right">На главную</a>
+
+<script src="/js/table.js" th:src="@{/js/table.js}"></script>
+</body>
+</html>

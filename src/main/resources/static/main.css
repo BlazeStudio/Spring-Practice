@@ -1,0 +1,25 @@
+@import url('https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.1/css/bootstrap.min.css');
+html,
+body {
+    height: 100%;
+}
+.fixed-bottom-right {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+}
+input {
+    margin-top: 5px;
+    border: 1px solid lightgray;
+    background-color: #f5f5f5;
+    border-radius: 10px;
+}
+input:active {
+    border: 1px solid lightgray;
+    background-color: #f5f5f5;
+}
+
+.table_elem {
+    border-left: 1px solid lightgray;
+    border-right: 1px solid lightgray;
+}
