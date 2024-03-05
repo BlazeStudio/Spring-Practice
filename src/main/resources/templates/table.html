@@ -33,6 +33,40 @@
         </tbody>
     </table>
 </div>
+<br>
+<h5>Ввод данных</h5>
+<br>
+<div style="width: 200px; margin: 0 auto">
+<form id="addServiceForm">
+    <div class="mb-3">
+        <label for="contractNumInput" class="form-label">Номер договора</label>
+        <input type="text" class="form-control" id="contractNumInput" name="contract_num">
+    </div>
+    <div class="mb-3">
+        <label for="serviceNameInput" class="form-label">Наименование услуги</label>
+        <input type="text" class="form-control" id="serviceNameInput" name="service_name">
+    </div>
+    <div class="mb-3">
+        <label for="serviceNameInput" class="form-label">Срок оказания</label>
+        <input type="text" class="form-control" id="dateInput" name="date">
+    </div>
+    <div class="mb-3">
+        <label for="serviceNameInput" class="form-label">Тип</label>
+        <input type="text" class="form-control" id="typeInput" name="type">
+    </div>
+    <div class="mb-3">
+        <label for="serviceNameInput" class="form-label">Результат комиссии</label>
+        <input type="text" class="form-control" id="comission_resultInput" name="comission_result">
+    </div>
+    <div class="mb-3">
+        <label for="serviceNameInput" class="form-label">Долг</label>
+        <input type="text" class="form-control" id="debtInput" name="debt">
+    </div>
+    <button type="button" class="btn btn-success" id="submitServiceButton">Подтвердить</button>
+</form>
+</div>
+<br>
+
 <a href="/" class="btn btn-lg btn-outline-success fixed-bottom-right">На главную</a>
 
 <script src="/js/table.js" th:src="@{/js/table.js}"></script>

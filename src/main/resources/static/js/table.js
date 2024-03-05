@@ -45,3 +45,47 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 });
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    const addServiceForm = document.getElementById('addServiceForm');
+    const submitButton = document.getElementById('submitServiceButton');
+    submitButton.addEventListener('click', function(event) {
+        event.preventDefault();
+        const formData = new FormData(addServiceForm);
+        fetch('/add-service', {
+            method: 'POST',
+            body: formData
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Ошибка при отправке данных');
+                }
+                return response.json();
+            })
+            .then(data => {
+                updateTable(data);
+            })
+            .catch(error => {
+                console.error('Ошибка:', error);
+            });
+    });
+
+    function updateTable(data) {
+        const tableBody = document.getElementById('tableBody');
+        tableBody.innerHTML = '';
+
+        data.forEach(service => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${service.contract_num}</td>
+                <td>${service.service_name}</td>
+                <td>${service.date}</td>
+                <td>${service.type}</td>
+                <td>${service.comission_result}</td>
+                <td>${service.debt}</td>
+            `;
+            tableBody.appendChild(row);
+        });
+    }
+});

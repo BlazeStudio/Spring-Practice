@@ -26,6 +26,10 @@ public class BankService {
 
     public UUID getUuid() {return uuid;}
 
+    public void setUuid(UUID uuid) {
+        this.uuid = uuid;
+    }
+
     public int getContract_num(){return contract_num;}
     public void setContract_num(int num){this.contract_num = num;}
 

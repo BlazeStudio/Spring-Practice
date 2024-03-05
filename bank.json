@@ -1,1 +1,17 @@
-[{"contract_num":1,"service_name":"Сервис 1","date":29022024,"type":"Тип 1","comission_result":100.0,"debt":0,"uuid":"5542de0f-989e-4066-9059-6f8fa3d8716b"},{"contract_num":2,"service_name":"Сервис 2","date":29022024,"type":"Тип 2","comission_result":150.0,"debt":50,"uuid":"07d0ef3d-0886-431e-9f82-212016af3e7d"}]
+[ {
+  "contract_num" : 1,
+  "service_name" : "Сервис 1",
+  "date" : 29022024,
+  "type" : "Тип 1",
+  "comission_result" : 100.0,
+  "debt" : 0,
+  "uuid" : "60dcbf87-b7f9-46da-b537-31a962a0dbb7"
+}, {
+  "contract_num" : 2,
+  "service_name" : "Сервис 2",
+  "date" : 29022024,
+  "type" : "Тип 2",
+  "comission_result" : 150.0,
+  "debt" : 50,
+  "uuid" : "0e271692-3f11-4420-9822-cbd80f118aae"
+} ]
