@@ -11,6 +11,10 @@
     <br>
     <h1 class="cover-heading" style="color: #198754; font-weight: bold; font-size: 45px">Список услуг</h1>
     <p class="lead">Весь спектр представленных операций</p>
+    <p id="foundServicesCount" class="lead">Найдено: <span id="foundCount">0</span> сервисов</p>
+<!--    <div th:if="${successMessage}" class="alert alert-success" role="alert">-->
+<!--        <span th:text="${successMessage}"></span>-->
+<!--    </div>-->
     <table class="table table-striped">
         <thead>
         <tr>
@@ -20,6 +24,7 @@
             <th>Тип <input type="text" id="typeFilter" placeholder="Фильтр..."></th>
             <th>Результат комиссии <input type="text" placeholder="Фильтр..." id="commissionResultFilter"></th>
             <th>Долг <input type="text" placeholder="Фильтр..." id="debtFilter"></th>
+            <th>Действия</th> <!-- Добавляем заголовок для кнопок действий -->
         </tr>
         </thead>
         <tbody class="table_elem" id="tableBody">
@@ -30,6 +35,14 @@
             <td th:text="${service.type}"></td>
             <td th:text="${service.comission_result}"></td>
             <td th:text="${service.debt}"></td>
+            <!-- Добавляем ячейку с кнопкой удаления -->
+            <td>
+                <form method="POST" action="/delete">
+                    <input type="hidden" name="uuid" th:value="${service.uuid}">
+                    <button type="submit" class="btn btn-danger">Удалить</button>
+                </form>
+            </td>
+        </tr>
         </tbody>
     </table>
 </div>
@@ -37,38 +50,39 @@
 <h5>Ввод данных</h5>
 <br>
 <div style="width: 200px; margin: 0 auto">
-<form id="addServiceForm">
-    <div class="mb-3">
-        <label for="contractNumInput" class="form-label">Номер договора</label>
-        <input type="text" class="form-control" id="contractNumInput" name="contract_num">
-    </div>
-    <div class="mb-3">
-        <label for="serviceNameInput" class="form-label">Наименование услуги</label>
-        <input type="text" class="form-control" id="serviceNameInput" name="service_name">
-    </div>
-    <div class="mb-3">
-        <label for="serviceNameInput" class="form-label">Срок оказания</label>
-        <input type="text" class="form-control" id="dateInput" name="date">
-    </div>
-    <div class="mb-3">
-        <label for="serviceNameInput" class="form-label">Тип</label>
-        <input type="text" class="form-control" id="typeInput" name="type">
-    </div>
-    <div class="mb-3">
-        <label for="serviceNameInput" class="form-label">Результат комиссии</label>
-        <input type="text" class="form-control" id="comission_resultInput" name="comission_result">
-    </div>
-    <div class="mb-3">
-        <label for="serviceNameInput" class="form-label">Долг</label>
-        <input type="text" class="form-control" id="debtInput" name="debt">
-    </div>
-    <button type="button" class="btn btn-success" id="submitServiceButton">Подтвердить</button>
-</form>
+    <form id="addServiceForm">
+        <!-- Форма для добавления данных о услуге остается без изменений -->
+        <div class="mb-3">
+            <label for="contractNumInput" class="form-label">Номер договора</label>
+            <input type="text" class="form-control" id="contractNumInput" name="contract_num">
+        </div>
+        <div class="mb-3">
+            <label for="serviceNameInput" class="form-label">Наименование услуги</label>
+            <input type="text" class="form-control" id="serviceNameInput" name="service_name">
+        </div>
+        <div class="mb-3">
+            <label for="serviceNameInput" class="form-label">Срок оказания</label>
+            <input type="text" class="form-control" id="dateInput" name="date">
+        </div>
+        <div class="mb-3">
+            <label for="serviceNameInput" class="form-label">Тип</label>
+            <input type="text" class="form-control" id="typeInput" name="type">
+        </div>
+        <div class="mb-3">
+            <label for="serviceNameInput" class="form-label">Результат комиссии</label>
+            <input type="text" class="form-control" id="comission_resultInput" name="comission_result">
+        </div>
+        <div class="mb-3">
+            <label for="serviceNameInput" class="form-label">Долг</label>
+            <input type="text" class="form-control" id="debtInput" name="debt">
+        </div>
+        <button type="button" class="btn btn-success" id="submitServiceButton">Подтвердить</button>
+    </form>
 </div>
 <br>
 
 <a href="/" class="btn btn-lg btn-outline-success fixed-bottom-right">На главную</a>
-
-<script src="/js/table.js" th:src="@{/js/table.js}"></script>
+<script src="/js/table2.js" th:src="@{/js/table2.js}"></script>
+<!--<script src="/js/table.js" th:src="@{/js/table.js}"></script>-->
 </body>
 </html>

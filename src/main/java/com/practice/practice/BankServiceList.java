@@ -26,6 +26,7 @@ public class BankServiceList {
     }
 
     public BankService findService(UUID uuid) {
+        System.out.println(services_list);
         for (BankService service : services_list) {
             if (service.getUuid().equals(uuid)) {
                 return service;
