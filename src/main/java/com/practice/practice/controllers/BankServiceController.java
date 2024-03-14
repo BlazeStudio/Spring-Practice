@@ -23,7 +23,6 @@ public class BankServiceController {
 
     @PostMapping("/add-service")
     public ResponseEntity<?> addService(@ModelAttribute BankService service) {
-        UUID uuid = UUID.randomUUID();
         bankServiceList.clear();
         bankServiceList.readFromFile("bank.json");
         bankServiceList.addService(service);

@@ -26,6 +26,8 @@ public class TableController {
         BankServiceList serviceList2 = new BankServiceList();
         serviceList2.readFromFile("bank.json");
         model.addAttribute("list", serviceList2);
+        model.addAttribute("message", "Таблица успешно загружена.");
+        model.addAttribute("messageType", "success");
         return "table";
     }
 

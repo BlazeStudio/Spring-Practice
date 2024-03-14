@@ -5,7 +5,7 @@
   "type" : "Тип 1",
   "comission_result" : 100.0,
   "debt" : 0,
-  "uuid" : "fb63f0f2-bd08-4e8e-b94c-23d497eae3a4"
+  "uuid" : "2c2b08db-934e-4c8a-b637-0b35da4bb776"
 }, {
   "contract_num" : 2,
   "service_name" : "Сервис 2",
@@ -13,5 +13,5 @@
   "type" : "Тип 2",
   "comission_result" : 150.0,
   "debt" : 50,
-  "uuid" : "4fb7b31b-398c-434b-bd31-988014de915b"
+  "uuid" : "811e65b5-9bd2-49f6-93b8-002019d4fa79"
 } ]

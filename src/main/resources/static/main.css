@@ -23,3 +23,66 @@ input:active {
     border-left: 1px solid lightgray;
     border-right: 1px solid lightgray;
 }
+
+/*TOAST*/
+.toast {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    width: 300px;
+    background-color: #ffffff; /* Белый цвет фона */
+    border-radius: 4px;
+    color: black; /* Синий цвет текста */
+    z-index: 10000;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.toast.show {
+    opacity: 1;
+    transition: opacity 0.8s ease, visibility 0.1s ease;
+    visibility: visible;
+}
+
+.toast-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.toast-body {
+    margin-top: 10px;
+}
+.toast .close {
+    background-color: transparent;
+    border: none;
+    color: inherit;
+}
+
+.toast .close:hover {
+    color: black;
+}
+
+.toast .close span {
+    font-size: 20px;
+    opacity: 0.5; /* Прозрачность иконки */
+    color: black;
+}
+
+.toast-success{
+    border: 2px solid seagreen;
+    border-radius: inherit;
+    padding-bottom: 15px;
+}
+
+.toast-warning {
+    border: 2px solid #edf333;
+    border-radius: inherit;
+    padding-bottom: 15px;
+}
+
+.toast-error {
+    border: 2px solid #f23627;
+    border-radius: inherit;
+    padding-bottom: 15px;
+}
