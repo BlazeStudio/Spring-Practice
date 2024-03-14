@@ -3,9 +3,11 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -73,6 +75,24 @@ public class BankServiceList {
             List<BankService> servicesFromFile = mapper.readValue(new File(filename), new TypeReference<List<BankService>>(){});
             services_list.addAll(servicesFromFile);
             System.out.println("Данные успешно прочитаны из файла " + filename);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void readFromFile2(MultipartFile file) {
+        try {
+            ObjectMapper mapper = new ObjectMapper();
+            mapper.enable(SerializationFeature.INDENT_OUTPUT);
+
+            InputStream inputStream = file.getInputStream();
+
+            List<BankService> servicesFromFile = mapper.readValue(inputStream, new TypeReference<List<BankService>>(){});
+
+            // Добавляем прочитанные данные в ваш список или коллекцию
+            services_list.addAll(servicesFromFile);
+
+            System.out.println("Данные успешно прочитаны из файла");
         } catch (IOException e) {
             e.printStackTrace();
         }

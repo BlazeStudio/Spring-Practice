@@ -6,12 +6,17 @@ document.addEventListener('DOMContentLoaded', function () {
     const commissionResultFilter = document.getElementById('commissionResultFilter');
     const debtFilter = document.getElementById('debtFilter');
 
-    contractFilter.addEventListener('input', filterTable);
-    serviceNameFilter.addEventListener('input', filterTable);
-    dateFilter.addEventListener('input', filterTable);
-    typeFilter.addEventListener('input', filterTable);
-    commissionResultFilter.addEventListener('input', filterTable);
-    debtFilter.addEventListener('input', filterTable);
+    contractFilter.addEventListener('input', filterTableAndDisplayCount);
+    serviceNameFilter.addEventListener('input', filterTableAndDisplayCount);
+    dateFilter.addEventListener('input', filterTableAndDisplayCount);
+    typeFilter.addEventListener('input', filterTableAndDisplayCount);
+    commissionResultFilter.addEventListener('input', filterTableAndDisplayCount);
+    debtFilter.addEventListener('input', filterTableAndDisplayCount);
+
+    function filterTableAndDisplayCount() {
+        filterTable();
+        displayFoundCount();
+    }
 
     function filterTable() {
         const contractValue = contractFilter.value.toUpperCase();
@@ -44,8 +49,23 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     }
-});
 
+    function displayFoundCount() {
+        const rows = document.querySelectorAll('#tableBody tr');
+        let visibleRowCount = 0;
+
+        rows.forEach(row => {
+            if (window.getComputedStyle(row).display !== 'none') {
+                visibleRowCount++;
+            }
+        });
+
+        document.getElementById('foundCount').textContent = visibleRowCount;
+    }
+
+// Вызовем функцию для фильтрации и отображения количества найденных записей
+    filterTableAndDisplayCount();
+});
 
 document.addEventListener('DOMContentLoaded', function() {
     const addServiceForm = document.getElementById('addServiceForm');
@@ -73,19 +93,32 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function updateTable(data) {
         const tableBody = document.getElementById('tableBody');
+
+        // Очищаем содержимое таблицы перед добавлением новых данных
         tableBody.innerHTML = '';
 
         data.forEach(service => {
             const row = document.createElement('tr');
             row.innerHTML = `
-                <td>${service.contract_num}</td>
-                <td>${service.service_name}</td>
-                <td>${service.date}</td>
-                <td>${service.type}</td>
-                <td>${service.comission_result}</td>
-                <td>${service.debt}</td>
-            `;
+            <td>${service.contract_num}</td>
+            <td>${service.service_name}</td>
+            <td>${service.date}</td>
+            <td>${service.type}</td>
+            <td>${service.comission_result}</td>
+            <td>${service.debt}</td>
+            <td>
+                <form method="POST" action="/delete">
+                    <input type="hidden" name="uuid" value="${service.uuid}">
+                    <button type="submit" class="btn btn-danger">Удалить</button>
+                </form>
+            </td>
+        `;
             tableBody.appendChild(row);
         });
+
+        const foundCountElement = document.getElementById('foundCount');
+        const currentCount = parseInt(foundCountElement.textContent);
+        foundCountElement.textContent = currentCount + 1;
     }
+
 });

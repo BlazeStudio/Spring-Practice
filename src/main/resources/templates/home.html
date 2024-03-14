@@ -16,12 +16,14 @@
     <div>
         <h1 class="cover-heading" style="color: #198754; font-weight: bold; font-size: 50px">БАНКОВСКИЕ УСЛУГИ</h1>
         <p class="lead">Привет</p>
-        <p class="lead">
-            <a href="/table" class="btn btn-lg btn-outline-success">Выбрать</a>
-        </p>
+        <form id="jsonForm" action="/upload" method="post" enctype="multipart/form-data">
+            <p class="lead">
+                <input type="file" id="jsonFile" name="jsonFile" accept=".json">
+            </p>
+            <button type="submit" class="btn btn-lg btn-outline-success">Отправить</button>
+        </form>
     </div>
 </div>
-
 <!--    <footer class="mastfoot mt-auto">-->
 <!--            <p>Cover template for <a href="https://getbootstrap.com/">Bootstrap</a>, by <a href="https://twitter.com/mdo">@mdo</a>.</p>-->
 <!--    </footer>-->

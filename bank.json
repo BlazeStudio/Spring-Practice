@@ -7,11 +7,19 @@
   "debt" : 0,
   "uuid" : "2c2b08db-934e-4c8a-b637-0b35da4bb776"
 }, {
-  "contract_num" : 2,
-  "service_name" : "Сервис 2",
-  "date" : 29022024,
-  "type" : "Тип 2",
-  "comission_result" : 150.0,
-  "debt" : 50,
-  "uuid" : "811e65b5-9bd2-49f6-93b8-002019d4fa79"
+  "contract_num" : 12,
+  "service_name" : "12",
+  "date" : 12,
+  "type" : "12",
+  "comission_result" : 12.0,
+  "debt" : 12,
+  "uuid" : null
+}, {
+  "contract_num" : 12,
+  "service_name" : "12",
+  "date" : 12,
+  "type" : "12",
+  "comission_result" : 12.0,
+  "debt" : 12,
+  "uuid" : null
 } ]
