@@ -23,7 +23,7 @@
     <br>
     <h1 class="cover-heading" style="color: #198754; font-weight: bold; font-size: 45px">Список услуг</h1>
     <p class="lead">Весь спектр представленных операций</p>
-    <p id="foundServicesCount" class="lead">Найдено сервисов:  <span id="foundCount">0</span></p>
+    <p id="foundServicesCount" class="lead">Найдено услуг:  <span id="foundCount">0</span></p>
     <table class="table table-striped">
         <thead>
         <tr>
@@ -33,6 +33,8 @@
             <th>Тип <input type="text" id="typeFilter" placeholder="Фильтр..."></th>
             <th>Результат комиссии <input type="text" placeholder="Фильтр..." id="commissionResultFilter"></th>
             <th>Долг <input type="text" placeholder="Фильтр..." id="debtFilter"></th>
+            <th>Статус услуги <input type="text" placeholder="Фильтр..." id="statusFilter"></th>
+            <th>Клиент <input type="text" placeholder="Фильтр..." id="clientFilter"></th>
             <th>Действия</th>
         </tr>
         </thead>
@@ -44,6 +46,8 @@
             <td th:text="${service.type}"></td>
             <td th:text="${service.comission_result}"></td>
             <td th:text="${service.debt}"></td>
+            <td th:text="${service.status}"></td>
+            <td th:text="${service.client}"></td>
             <td>
                 <form method="POST" action="/delete">
                     <input type="hidden" name="uuid" th:value="${service.uuid}">
@@ -55,33 +59,57 @@
     </table>
 </div>
 <br>
-<h5>Ввод данных</h5>
-<br>
-<div style="width: 200px; margin: 0 auto">
-    <form id="addServiceForm">
-        <div class="mb-3">
-            <label for="serviceNameInput" class="form-label">Наименование услуги</label>
-            <input type="text" class="form-control" id="serviceNameInput" name="service_name">
+<div class="container">
+    <button type="button" class="btn btn-lg btn-outline-success" id="showHideFormButton">Добавить услугу</button>
+    <div id="formContainer" style="display: none; margin-top: 20px">
+        <h5>Добавление услуги</h5>
+        <br>
+        <div style="width: 200px; margin: 0 auto">
+            <form id="addServiceForm">
+                <div class="mb-3">
+                    <label for="serviceNameInput" class="form-label">Наименование услуги</label>
+                    <input type="text" class="form-control" id="serviceNameInput" name="service_name">
+                </div>
+                <div class="mb-3">
+                    <label for="serviceNameInput" class="form-label">Срок оказания</label>
+                    <input type="date" class="form-control" id="dateInput" name="date">
+                </div>
+                <div class="mb-3">
+                    <label for="serviceNameInput" class="form-label">Тип</label>
+                    <input type="text" class="form-control" id="typeInput" name="type">
+                </div>
+                <div class="mb-3">
+                    <label for="serviceNameInput" class="form-label">Результат комиссии</label>
+                    <input type="number" class="form-control" id="comission_resultInput" name="comission_result">
+                </div>
+                <div class="mb-3">
+                    <label for="serviceNameInput" class="form-label">Долг</label>
+                    <input type="number" class="form-control" id="debtInput" name="debt">
+                </div>
+                <div class="mb-3">
+                    <label for="serviceNameInput" class="form-label">Статус услуги</label>
+                    <input type="text" class="form-control" id="statusInput" name="status">
+                </div>
+                <div class="mb-3">
+                    <label for="serviceNameInput" class="form-label">Клиент</label>
+                    <input type="text" class="form-control" id="clientInput" name="client">
+                </div>
+                <button type="button" class="btn btn-success" id="submitServiceButton">Подтвердить</button>
+            </form>
         </div>
-        <div class="mb-3">
-            <label for="serviceNameInput" class="form-label">Срок оказания</label>
-            <input type="date" class="form-control" id="dateInput" name="date">
-        </div>
-        <div class="mb-3">
-            <label for="serviceNameInput" class="form-label">Тип</label>
-            <input type="text" class="form-control" id="typeInput" name="type">
-        </div>
-        <div class="mb-3">
-            <label for="serviceNameInput" class="form-label">Результат комиссии</label>
-            <input type="text" class="form-control" id="comission_resultInput" name="comission_result">
-        </div>
-        <div class="mb-3">
-            <label for="serviceNameInput" class="form-label">Долг</label>
-            <input type="number" class="form-control" id="debtInput" name="debt">
-        </div>
-        <button type="button" class="btn btn-success" id="submitServiceButton">Подтвердить</button>
-    </form>
+    </div>
 </div>
+
+<script>
+    document.getElementById('showHideFormButton').addEventListener('click', function() {
+        var formContainer = document.getElementById('formContainer');
+        if (formContainer.style.display === 'none') {
+            formContainer.style.display = 'block';
+        } else {
+            formContainer.style.display = 'none';
+        }
+    });
+</script>
 <br>
 <div class="fixed-top-left">
 <div class="dropdown">

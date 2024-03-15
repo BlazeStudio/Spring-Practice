@@ -63,7 +63,6 @@ document.addEventListener('DOMContentLoaded', function () {
         document.getElementById('foundCount').textContent = visibleRowCount;
     }
 
-// Вызовем функцию для фильтрации и отображения количества найденных записей
     filterTableAndDisplayCount();
 });
 
@@ -94,17 +93,19 @@ document.addEventListener('DOMContentLoaded', function() {
     function updateTable(data) {
         const tableBody = document.getElementById('tableBody');
 
-        // Очищаем содержимое таблицы перед добавлением новых данных
         tableBody.innerHTML = '';
 
         data.forEach(service => {
             const row = document.createElement('tr');
             row.innerHTML = `
+            <td>${service.contract_num}</td>
             <td>${service.service_name}</td>
             <td>${service.date}</td>
             <td>${service.type}</td>
             <td>${service.comission_result}</td>
             <td>${service.debt}</td>
+            <td>${service.status}</td>
+            <td>${service.client}</td>
             <td>
                 <form method="POST" action="/delete">
                     <input type="hidden" name="uuid" value="${service.uuid}">

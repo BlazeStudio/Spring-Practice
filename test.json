@@ -5,6 +5,8 @@
   "type" : "Тип 1",
   "comission_result" : 100.0,
   "debt" : 0,
+  "status" : "rw",
+  "client" : "Yes",
   "uuid" : "2c2b08db-934e-4c8a-b637-0b35da4bb776"
 }, {
   "contract_num" : 2,
@@ -13,21 +15,17 @@
   "type" : "Тип 2",
   "comission_result" : 150.0,
   "debt" : 50,
+  "status" : "rw",
+  "client" : "Yes",
   "uuid" : "811e65b5-9bd2-49f6-93b8-002019d4fa79"
 }, {
-  "contract_num" : 5,
-  "service_name" : "12",
+  "contract_num" : 3,
+  "service_name" : "Test",
   "date" : "1212-12-12",
-  "type" : "12",
+  "type" : "121",
   "comission_result" : 12.0,
   "debt" : 12,
-  "uuid" : "1cfe78cf-8b55-42ed-b280-dd9f7781ee68"
-}, {
-  "contract_num" : 6,
-  "service_name" : "213",
-  "date" : "1233-03-12",
-  "type" : "123123",
-  "comission_result" : 123123.0,
-  "debt" : 123,
-  "uuid" : "d87a06ad-e612-413a-94fb-05779f3ef5a1"
+  "status" : "12",
+  "client" : "12",
+  "uuid" : "8188f953-5bef-4380-b78a-17a216448102"
 } ]

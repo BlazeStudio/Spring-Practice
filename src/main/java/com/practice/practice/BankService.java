@@ -9,7 +9,8 @@ public class BankService {
     private String type;
     private double comission_result;
     private int debt;
-    private boolean service_status;
+    private String status;
+    private String client;
     private UUID uuid;
 
     public BankService() {
@@ -48,11 +49,16 @@ public class BankService {
     public int getDebt(){return debt;}
     public void setDebt(int debt){this.debt = debt;}
 
+    public String getStatus(){return status;}
+    public void setStatus(String status){this.status = status;}
+    public String getClient(){return client;}
+    public void setClient(String client){this.client = client;}
+
     public String toString(){
         return "Bank {" + "UUID = '" + uuid + '\''
                 + " Номер договора = '" + contract_num + '\''
                 + ", наименование услуги = " + service_name
-                + ", срок оказания = " + date + ", тип = " + type + ", результат комиссии = " + comission_result + ", долг = " + debt + ", Статус услуги= " + service_status
+                + ", срок оказания = " + date + ", тип = " + type + ", результат комиссии = " + comission_result + ", долг = " + debt + ", Статус услуги= " + status
                 + "}\n";
     }
 }

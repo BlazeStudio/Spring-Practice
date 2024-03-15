@@ -92,6 +92,25 @@ input:active {
     padding-bottom: 15px;
 }
 
+/*TABLE*/
+
+.table {
+    width: 100%;
+    table-layout: fixed;
+}
+
+th, td {
+    width: auto;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+#tableBody {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
 /*DROPDOWN*/
 
 .dropbtn {
