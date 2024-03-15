@@ -8,6 +8,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -24,6 +25,7 @@ public class BankServiceList {
         this.services_list = services_list;
     }
     public void addService(BankService service) {
+        service.setUuid();
         services_list.add(service);
     }
 
@@ -68,6 +70,36 @@ public class BankServiceList {
             e.printStackTrace();
         }
     }
+    public void writeInFile2(OutputStream outputStream){
+        try {
+            ObjectMapper mapper = new ObjectMapper();
+            mapper.enable(SerializationFeature.INDENT_OUTPUT);
+            mapper.writeValue(outputStream, services_list);
+            System.out.println("Данные успешно записаны в файл");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void writeInFile3(OutputStream outputStream){
+        try {
+
+            if (services_list == null) {
+                System.out.println("Список банковских услуг пуст.");
+                return;
+            }
+
+            ObjectMapper mapper = new ObjectMapper();
+            mapper.enable(SerializationFeature.INDENT_OUTPUT);
+            byte[] jsonData = mapper.writeValueAsBytes(services_list);
+            outputStream.write(jsonData);
+            System.out.println("Данные успешно записаны в файл");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
     public void readFromFile(String filename) {
         try {
             ObjectMapper mapper = new ObjectMapper();

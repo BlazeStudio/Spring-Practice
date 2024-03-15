@@ -26,8 +26,8 @@ public class BankService {
 
     public UUID getUuid() {return uuid;}
 
-    public void setUuid(UUID uuid) {
-        this.uuid = uuid;
+    public void setUuid() {
+        this.uuid = UUID.randomUUID();
     }
 
     public int getContract_num(){return contract_num;}

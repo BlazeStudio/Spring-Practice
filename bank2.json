@@ -1,0 +1,17 @@
+[ {
+  "contract_num" : 1,
+  "service_name" : "Сервис 1",
+  "date" : 29022024,
+  "type" : "Тип 1",
+  "comission_result" : 100.0,
+  "debt" : 0,
+  "uuid" : "2c2b08db-934e-4c8a-b637-0b35da4bb776"
+}, {
+  "contract_num" : 2,
+  "service_name" : "Сервис 2",
+  "date" : 29022024,
+  "type" : "Тип 2",
+  "comission_result" : 150.0,
+  "debt" : 50,
+  "uuid" : "811e65b5-9bd2-49f6-93b8-002019d4fa79"
+} ]

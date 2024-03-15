@@ -21,9 +21,8 @@ public class UploadController {
     public String upload(Model model, HttpSession session, @RequestParam("jsonFile") MultipartFile jsonFile) {
         if (!jsonFile.isEmpty()) {
             try {
-                // Получаем содержимое файла
                 byte[] bytes = jsonFile.getBytes();
-
+                session.setAttribute("uploadedJsonFile", jsonFile);
                 bankServiceList = new BankServiceList();
                 bankServiceList.readFromFile2(jsonFile);
                 session.setAttribute("bankServiceList", bankServiceList);

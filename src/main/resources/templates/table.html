@@ -23,7 +23,7 @@
     <br>
     <h1 class="cover-heading" style="color: #198754; font-weight: bold; font-size: 45px">Список услуг</h1>
     <p class="lead">Весь спектр представленных операций</p>
-    <p id="foundServicesCount" class="lead">Найдено сервисов -  <span id="foundCount">0</span></p>
+    <p id="foundServicesCount" class="lead">Найдено сервисов:  <span id="foundCount">0</span></p>
     <table class="table table-striped">
         <thead>
         <tr>
@@ -93,7 +93,7 @@
 <div class="dropdown">
     <button class="dropbtn" for="btnControl">Файл</button>
     <div class="dropdown-content">
-        <a href="">Сохранить в файл</a>
+            <a id="saveLabel" style="color: #198754" href="#" onclick="exportToFile()">Сохранить файл</a>
         <form id="jsonForm" action="/upload" method="post" enctype="multipart/form-data" style="margin: 0; padding: 0">
             <a id="fileLabel" style="color: #198754" href="#" onclick="handleFileLabelClick()">Загрузить файл</a>
                 <input type="file" id="jsonFile" style="height: 0; width: 0; overflow: hidden; display: none; opacity: 0" name="jsonFile" accept=".json" onchange="handleFileSelect()">
@@ -101,6 +101,29 @@
     </div>
 </div>
 </div>
+<script>
+    function exportToFile() {
+        fetch('/save')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Ошибка получения файла');
+                }
+                return response.blob();
+            })
+            .then(blob => {
+                var a = document.createElement('a');
+                var fileName = 'test.json';
+
+                a.href = window.URL.createObjectURL(blob);
+                a.download = fileName;
+
+                a.click();
+            })
+            .catch(error => {
+                console.error('Произошла ошибка:', error);
+            });
+    }
+</script>
 <a href="/" class="btn btn-lg btn-outline-success fixed-bottom-right">На главную</a>
 <script src="/js/table.js" th:src="@{/js/table.js}"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -113,6 +136,13 @@
     });
 </script>
 <script>
+    function handleSaveLabelClick() {
+        var input = document.getElementById('hiddenJsonFile');
+        input.click();
+    }
+    function handleFileSelect2() {
+        document.getElementById('jsonForm2').submit();
+    }
     function handleFileLabelClick() {
         document.getElementById('jsonFile').click();
     }
