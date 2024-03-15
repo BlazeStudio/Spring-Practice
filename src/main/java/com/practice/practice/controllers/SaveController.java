@@ -18,7 +18,7 @@ public class SaveController {
     public ResponseEntity<?> save(HttpSession session) {
         BankServiceList bankServiceList = (BankServiceList) session.getAttribute("bankServiceList");
         if (bankServiceList == null) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Bank service list not found in session.");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Данные не загружены на сайт");
         }
 
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
@@ -27,7 +27,6 @@ public class SaveController {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         headers.setContentDispositionFormData("attachment", "test.json");
-
         return new ResponseEntity<>(outputStream.toByteArray(), headers, HttpStatus.OK);
     }
 }

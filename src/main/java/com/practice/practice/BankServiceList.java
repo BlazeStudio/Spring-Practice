@@ -21,6 +21,21 @@ public class BankServiceList {
         return services_list;
     }
 
+    public int findMaxContractNum() {
+        if (services_list.isEmpty()) {
+            System.out.println("Список банковских услуг пуст.");
+            return 0;
+        }
+
+        int maxContractNum = Integer.MIN_VALUE;
+        for (BankService service : services_list) {
+            int contractNum = service.getContract_num();
+            if (contractNum > maxContractNum) {
+                maxContractNum = contractNum;
+            }
+        }
+        return maxContractNum;
+    }
     public void setServicesList(List<BankService> services_list) {
         this.services_list = services_list;
     }
@@ -60,27 +75,6 @@ public class BankServiceList {
         services_list.clear();
     }
 
-    public void writeInFile(String filename){
-        try {
-            ObjectMapper mapper = new ObjectMapper();
-            mapper.enable(SerializationFeature.INDENT_OUTPUT);
-            mapper.writeValue(new File(filename), services_list);
-            System.out.println("Данные успешно записаны в файл " + filename);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-    public void writeInFile2(OutputStream outputStream){
-        try {
-            ObjectMapper mapper = new ObjectMapper();
-            mapper.enable(SerializationFeature.INDENT_OUTPUT);
-            mapper.writeValue(outputStream, services_list);
-            System.out.println("Данные успешно записаны в файл");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
     public void writeInFile3(OutputStream outputStream){
         try {
 
@@ -99,19 +93,6 @@ public class BankServiceList {
         }
     }
 
-
-    public void readFromFile(String filename) {
-        try {
-            ObjectMapper mapper = new ObjectMapper();
-            mapper.enable(SerializationFeature.INDENT_OUTPUT);
-            List<BankService> servicesFromFile = mapper.readValue(new File(filename), new TypeReference<List<BankService>>(){});
-            services_list.addAll(servicesFromFile);
-            System.out.println("Данные успешно прочитаны из файла " + filename);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
     public void readFromFile2(MultipartFile file) {
         try {
             ObjectMapper mapper = new ObjectMapper();
@@ -121,10 +102,7 @@ public class BankServiceList {
 
             List<BankService> servicesFromFile = mapper.readValue(inputStream, new TypeReference<List<BankService>>(){});
 
-            // Добавляем прочитанные данные в ваш список или коллекцию
             services_list.addAll(servicesFromFile);
-
-            System.out.println("Данные успешно прочитаны из файла");
         } catch (IOException e) {
             e.printStackTrace();
         }

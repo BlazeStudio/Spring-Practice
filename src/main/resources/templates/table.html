@@ -33,7 +33,7 @@
             <th>Тип <input type="text" id="typeFilter" placeholder="Фильтр..."></th>
             <th>Результат комиссии <input type="text" placeholder="Фильтр..." id="commissionResultFilter"></th>
             <th>Долг <input type="text" placeholder="Фильтр..." id="debtFilter"></th>
-            <th>Действия</th> <!-- Добавляем заголовок для кнопок действий -->
+            <th>Действия</th>
         </tr>
         </thead>
         <tbody class="table_elem" id="tableBody">
@@ -44,7 +44,6 @@
             <td th:text="${service.type}"></td>
             <td th:text="${service.comission_result}"></td>
             <td th:text="${service.debt}"></td>
-            <!-- Добавляем ячейку с кнопкой удаления -->
             <td>
                 <form method="POST" action="/delete">
                     <input type="hidden" name="uuid" th:value="${service.uuid}">
@@ -60,18 +59,13 @@
 <br>
 <div style="width: 200px; margin: 0 auto">
     <form id="addServiceForm">
-        <!-- Форма для добавления данных о услуге остается без изменений -->
-        <div class="mb-3">
-            <label for="contractNumInput" class="form-label">Номер договора</label>
-            <input type="text" class="form-control" id="contractNumInput" name="contract_num">
-        </div>
         <div class="mb-3">
             <label for="serviceNameInput" class="form-label">Наименование услуги</label>
             <input type="text" class="form-control" id="serviceNameInput" name="service_name">
         </div>
         <div class="mb-3">
             <label for="serviceNameInput" class="form-label">Срок оказания</label>
-            <input type="text" class="form-control" id="dateInput" name="date">
+            <input type="date" class="form-control" id="dateInput" name="date">
         </div>
         <div class="mb-3">
             <label for="serviceNameInput" class="form-label">Тип</label>
@@ -83,7 +77,7 @@
         </div>
         <div class="mb-3">
             <label for="serviceNameInput" class="form-label">Долг</label>
-            <input type="text" class="form-control" id="debtInput" name="debt">
+            <input type="number" class="form-control" id="debtInput" name="debt">
         </div>
         <button type="button" class="btn btn-success" id="submitServiceButton">Подтвердить</button>
     </form>
@@ -124,25 +118,20 @@
             });
     }
 </script>
-<a href="/" class="btn btn-lg btn-outline-success fixed-bottom-right">На главную</a>
+<a href="/" class="btn btn-lg btn-outline-success fixed-bottom-right">Выход</a>
 <script src="/js/table.js" th:src="@{/js/table.js}"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script>
-    // Показываем тост при загрузке страницы
     $(document).ready(function() {
         $('.toast').toast('show');
     });
+    $('.toast .close').click(function(){
+        $(this).parents('.toast').toast('hide');
+    });
 </script>
 <script>
-    function handleSaveLabelClick() {
-        var input = document.getElementById('hiddenJsonFile');
-        input.click();
-    }
-    function handleFileSelect2() {
-        document.getElementById('jsonForm2').submit();
-    }
     function handleFileLabelClick() {
         document.getElementById('jsonFile').click();
     }

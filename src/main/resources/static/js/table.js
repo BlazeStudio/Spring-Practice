@@ -100,7 +100,6 @@ document.addEventListener('DOMContentLoaded', function() {
         data.forEach(service => {
             const row = document.createElement('tr');
             row.innerHTML = `
-            <td>${service.contract_num}</td>
             <td>${service.service_name}</td>
             <td>${service.date}</td>
             <td>${service.type}</td>

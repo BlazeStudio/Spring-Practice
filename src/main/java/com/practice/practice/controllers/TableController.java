@@ -20,15 +20,18 @@ import java.io.IOException;
 public class TableController {
 
     @GetMapping("/table")
-    public String table(@RequestParam(name = "message", required = false) String message,
-                        @RequestParam(name = "type", required = false) String messageType,Model model, HttpSession session) {
+    public String table(Model model, HttpSession session) {
         BankServiceList bankServiceList = (BankServiceList) session.getAttribute("bankServiceList");
+        String message = (String) session.getAttribute("message");
         if (bankServiceList == null){
             return "redirect:/";
         }
-        if (message != null && messageType != null) {
+        if (message != null) {
+            String messageType = (String) session.getAttribute("messageType");
             model.addAttribute("message", message);
             model.addAttribute("messageType", messageType);
+            session.removeAttribute("message");
+            session.removeAttribute("messageType");
         }
 
         model.addAttribute("list", bankServiceList);

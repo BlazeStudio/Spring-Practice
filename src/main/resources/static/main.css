@@ -45,7 +45,7 @@ input:active {
 
 .toast.show {
     opacity: 1;
-    transition: opacity 0.8s ease, visibility 0.1s ease;
+    transition: opacity 0.3s ease, visibility 0.1s ease;
     visibility: visible;
 }
 
@@ -134,7 +134,6 @@ input:active {
 
 .dropdown:hover .dropdown-content {
     max-height: 500px;
-    min-width: 160px;
     transition: max-height 0.25s ease-in;
 }
 

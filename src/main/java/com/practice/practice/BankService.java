@@ -5,7 +5,7 @@ import java.util.UUID;
 public class BankService {
     private int contract_num;
     private String service_name;
-    private int date;
+    private String date;
     private String type;
     private double comission_result;
     private int debt;
@@ -14,7 +14,7 @@ public class BankService {
 
     public BankService() {
     }
-    public BankService(int num, String name, int date, String type, double comission_result, int debt){
+    public BankService(int num, String name, String date, String type, double comission_result, int debt){
         this.uuid = UUID.randomUUID();
         this.contract_num = num;
         this.service_name = name;
@@ -36,8 +36,8 @@ public class BankService {
     public String getService_name(){return service_name;}
     public void setService_name(String name){this.service_name = name;}
 
-    public int getDate(){return date;}
-    public void setDate(int date){this.date = date;}
+    public String getDate(){return date;}
+    public void setDate(String date){this.date = date;}
 
     public String getType(){return type;}
     public void setType(String type){this.type = type;}

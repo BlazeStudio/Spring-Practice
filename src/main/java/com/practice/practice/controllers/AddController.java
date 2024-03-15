@@ -16,6 +16,9 @@ public class AddController {
     @PostMapping("/add-service")
     public ResponseEntity<?> addService(@ModelAttribute BankService service,  HttpSession session, Model model) {
         BankServiceList bankServiceList = (BankServiceList) session.getAttribute("bankServiceList");
+
+        int contract_num = bankServiceList.findMaxContractNum();
+        service.setContract_num(contract_num + 1);
         bankServiceList.addService(service);
 //        model.addAttribute("message", "Сервис успешно добавлен");
 //        model.addAttribute("messageType", "success");

@@ -18,25 +18,29 @@ public class UploadController {
     private BankServiceList bankServiceList;
 
     @PostMapping("/upload")
-    public String upload(Model model, HttpSession session, @RequestParam("jsonFile") MultipartFile jsonFile) {
+    public String upload(HttpSession session, @RequestParam("jsonFile") MultipartFile jsonFile) {
         if (!jsonFile.isEmpty()) {
+            if (jsonFile.getOriginalFilename().endsWith(".json")) {
             try {
                 byte[] bytes = jsonFile.getBytes();
                 session.setAttribute("uploadedJsonFile", jsonFile);
                 bankServiceList = new BankServiceList();
                 bankServiceList.readFromFile2(jsonFile);
                 session.setAttribute("bankServiceList", bankServiceList);
-                String encodedMessage = URLEncoder.encode("Файл успешно загружен", StandardCharsets.UTF_8);
-                String redirectUrl = "/table?message=" + encodedMessage + "&type=success";
-                return "redirect:" + redirectUrl;
+                session.setAttribute("message", "Файл успешно заргужен");
+                session.setAttribute("messageType", "success");
             } catch (IOException e) {
                 e.printStackTrace();
-                model.addAttribute("message", "Ошибка при загрузке файла.");
-                model.addAttribute("messageType", "error");
+                session.setAttribute("message", "Ошибка при загрузке файла.");
+                session.setAttribute("messageType", "error");
+            }
+            } else {
+                session.setAttribute("message", "Ошибка при загрузке файла.");
+                session.setAttribute("messageType", "error");
             }
         } else {
-            model.addAttribute("message", "Файл не был выбран.");
-            model.addAttribute("messageType", "error");
+            session.setAttribute("message", "Файл не был выбран.");
+            session.setAttribute("messageType", "warning");
         }
         return "redirect:/table";
     }
