@@ -100,10 +100,8 @@ input:active {
 }
 
 th, td {
-    width: auto;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    width: 20px;
+    height: 20px;
 }
 
 #tableBody {

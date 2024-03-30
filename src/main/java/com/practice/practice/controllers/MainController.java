@@ -26,7 +26,6 @@ public class MainController {
             session.removeAttribute("message");
             session.removeAttribute("messageType");
         }
-        model.addAttribute("title", "Hello World!");
         return "home";
     }
 

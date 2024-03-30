@@ -27,14 +27,15 @@
     <table class="table table-striped">
         <thead>
         <tr>
-            <th>Номер договора <input type="text" placeholder="Фильтр..." id="contractFilter"></th>
-            <th>Наименование услуги <input type="text" placeholder="Фильтр..." id="serviceNameFilter"></th>
-            <th>Срок оказания <input type="text" placeholder="Фильтр..." id="dateFilter"></th>
-            <th>Тип <input type="text" id="typeFilter" placeholder="Фильтр..."></th>
-            <th>Результат комиссии <input type="text" placeholder="Фильтр..." id="commissionResultFilter"></th>
-            <th>Долг <input type="text" placeholder="Фильтр..." id="debtFilter"></th>
-            <th>Статус услуги <input type="text" placeholder="Фильтр..." id="statusFilter"></th>
-            <th>Клиент <input type="text" placeholder="Фильтр..." id="clientFilter"></th>
+            <th>Номер договора <input style="width: 80px" type="text" placeholder="Фильтр..." id="contractFilter"></th>
+            <th>Наименование услуги <input style="width: 80px" type="text" placeholder="Фильтр..." id="serviceNameFilter"></th>
+            <th>Срок оказания <input style="width: 80px" type="text" placeholder="Фильтр..." id="dateFilter"></th>
+            <th>Тип <input style="width: 80px" type="text" id="typeFilter" placeholder="Фильтр..."></th>
+            <th>Результат комиссии <input style="width: 80px" type="text" placeholder="Фильтр..." id="commissionResultFilter"></th>
+            <th>Долг <input style="width: 80px" type="text" placeholder="Фильтр..." id="debtFilter"></th>
+            <th>Статус услуги <input style="width: 80px" type="text" placeholder="Фильтр..." id="statusFilter"></th>
+            <th>Клиент <input style="width: 80px" type="text" placeholder="Фильтр..." id="clientFilter"></th>
+            <th>UUID <input style="width: 80px" type="text" placeholder="Фильтр..." id="uuidFilter"></th>
             <th>Действия</th>
         </tr>
         </thead>
@@ -48,6 +49,7 @@
             <td th:text="${service.debt}"></td>
             <td th:text="${service.status}"></td>
             <td th:text="${service.client}"></td>
+            <td th:text="${service.uuid}"></td>
             <td>
                 <form method="POST" action="/delete">
                     <input type="hidden" name="uuid" th:value="${service.uuid}">
@@ -59,6 +61,13 @@
     </table>
 </div>
 <br>
+<div>
+    <h4>Вывести элемент по UUID</h4>
+    <form action="/show" method="post">
+        <input type="text" id="uuid" name="uuid" placeholder="Введите UUID" required>
+        <button type="submit" class="btn btn-success">Отправить</button>
+    </form>
+</div>
 <div class="container">
     <button type="button" class="btn btn-lg btn-outline-success" id="showHideFormButton">Добавить услугу</button>
     <div id="formContainer" style="display: none; margin-top: 20px">

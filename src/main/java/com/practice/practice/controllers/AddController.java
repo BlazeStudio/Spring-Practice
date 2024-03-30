@@ -14,7 +14,7 @@ public class AddController {
 
 
     @PostMapping("/add-service")
-    public ResponseEntity<?> addService(@ModelAttribute BankService service,  HttpSession session, Model model) {
+    public ResponseEntity<?> addService(@ModelAttribute BankService service,  HttpSession session) {
         BankServiceList bankServiceList = (BankServiceList) session.getAttribute("bankServiceList");
         int contract_num = bankServiceList.findMaxContractNum();
         service.setContract_num(contract_num + 1);

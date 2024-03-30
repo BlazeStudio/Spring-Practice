@@ -5,13 +5,11 @@ import com.practice.practice.BankServiceList;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -20,12 +18,14 @@ import java.io.IOException;
 public class TableController {
 
     @GetMapping("/table")
-    public String table(Model model, HttpSession session) {
+    public ResponseEntity<String> table(Model model, HttpSession session) {
         BankServiceList bankServiceList = (BankServiceList) session.getAttribute("bankServiceList");
         String message = (String) session.getAttribute("message");
-        if (bankServiceList == null){
-            return "redirect:/";
+
+        if (bankServiceList == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Сервисы не найдены");
         }
+
         if (message != null) {
             String messageType = (String) session.getAttribute("messageType");
             model.addAttribute("message", message);
@@ -35,8 +35,6 @@ public class TableController {
         }
 
         model.addAttribute("list", bankServiceList);
-        return "table";
+        return ResponseEntity.ok("table"); // assuming "table" is the name of your view
     }
-
-
 }

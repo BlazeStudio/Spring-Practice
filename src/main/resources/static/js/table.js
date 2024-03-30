@@ -106,6 +106,7 @@ document.addEventListener('DOMContentLoaded', function() {
             <td>${service.debt}</td>
             <td>${service.status}</td>
             <td>${service.client}</td>
+            <td>${service.uuid}</td>
             <td>
                 <form method="POST" action="/delete">
                     <input type="hidden" name="uuid" value="${service.uuid}">

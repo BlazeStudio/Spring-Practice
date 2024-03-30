@@ -2,10 +2,11 @@ package com.practice.practice;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -45,7 +46,6 @@ public class BankServiceList {
     }
 
     public BankService findService(UUID uuid) {
-        System.out.println(services_list);
         for (BankService service : services_list) {
             if (service.getUuid().equals(uuid)) {
                 return service;
@@ -53,23 +53,37 @@ public class BankServiceList {
         }
         return null;
     }
-    public void deleteService(UUID uuid) {
-        BankService foundService = findService(uuid);
-        if (foundService != null) {
-            services_list.remove(foundService);
-            System.out.println("Объект с UUID " + uuid + " удален из списка.");
-        } else {
-            System.out.println("Объект с UUID " + uuid + " не найден в списке.");
+    public ResponseEntity<ResponseEntity<String>> deleteService(String uuidString) {
+        try {
+            UUID uuid = UUID.fromString(uuidString);
+            BankService foundService = findService(uuid);
+            if (foundService != null) {
+                services_list.remove(foundService);
+                return ResponseEntity.ok().body(ResponseEntity.ok("Сервис успешно удален"));
+            } else {
+                return ResponseEntity.ok().body(ResponseEntity.status(HttpStatus.NOT_FOUND).body("Сервис не найден"));
+            }
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.ok().body(ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Неверный формат UUID"));
         }
     }
-    public void showService(UUID uuid) {
-        BankService foundService = findService(uuid);
-        if (foundService != null) {
-            System.out.println(foundService);
-        } else {
-            System.out.println("Объект с UUID " + uuid + " не найден в списке.");
+
+    public int size() {
+        return services_list.size();
+    }
+    public ResponseEntity<BankService> showService(UUID uuid) {
+        try {
+            BankService foundService = findService(uuid);
+            if (foundService != null) {
+                return ResponseEntity.ok(foundService);
+            } else {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+            }
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
         }
     }
+
 
     public void clear() {
         services_list.clear();
@@ -106,5 +120,12 @@ public class BankServiceList {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    public boolean isEmpty() {
+        return services_list.isEmpty();
+    }
+
+    public List<BankService> getServices() {
+        return services_list;
     }
 }
