@@ -1,6 +1,8 @@
 package com.practice.practice.controllers;
 
 import com.practice.practice.BankServiceList;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -9,13 +11,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.UUID;
 
-@Controller
+@Tag(name="DeleteController", description="Контроллер удаления одной услуги")
+@RestController
 public class DeleteController {
-
-
+    @Operation(summary = "Удаляет существующую услугу",
+            description= "Ищет услугу по UUID. При нахождении удаляет из массива, в противном случае - выбрасывет exception")
     @PostMapping("/delete")
     public ResponseEntity<String> deleteService(@RequestParam("uuid") String uuidString, Model model, HttpSession session) {
         try {
@@ -36,13 +40,5 @@ public class DeleteController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("400 - Некорректный формат UUID");
         }
     }
-
-
-//    @PostMapping("/delete")
-//    public String deleteService(@RequestParam("uuid") UUID uuid, Model model,  HttpSession session) {
-//        BankServiceList bankServiceList = (BankServiceList) session.getAttribute("bankServiceList");
-//        ResponseEntity<String> response = bankServiceList.deleteService(uuid);
-//        return "redirect:/table";
-//    }
 }
 

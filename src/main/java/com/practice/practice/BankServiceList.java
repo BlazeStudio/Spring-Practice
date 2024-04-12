@@ -84,7 +84,6 @@ public class BankServiceList {
         }
     }
 
-
     public void clear() {
         services_list.clear();
     }

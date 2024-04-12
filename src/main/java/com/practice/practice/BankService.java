@@ -1,16 +1,27 @@
 package com.practice.practice;
 
-import java.util.UUID;
+import io.swagger.v3.oas.annotations.media.Schema;
 
+import java.util.UUID;
+@Schema(description = "Сущность банковской услуги")
 public class BankService {
+    @Schema(description = "Номер контракта", example = "2564")
     private int contract_num;
+    @Schema(description = "Название услуги", example = "Кредит")
     private String service_name;
+    @Schema(description = "Дата оказания", example = "2023-04-04")
     private String date;
+    @Schema(description = "Тип", example = "Потребительский")
     private String type;
+    @Schema(description = "Комиссия", example = "150.2")
     private double comission_result;
+    @Schema(description = "Долг", example = "50")
     private int debt;
+    @Schema(description = "Статус", example = "В работе")
     private String status;
+    @Schema(description = "Клиент", example = "Антон В.")
     private String client;
+    @Schema(description = "Уникальный идентификатор", example = "407d5c4c-de54-4128-9856-5a8595aa5f7e")
     private UUID uuid;
 
     public BankService() {

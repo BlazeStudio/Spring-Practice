@@ -2,18 +2,23 @@ package com.practice.practice.controllers;
 
 import com.practice.practice.BankService;
 import com.practice.practice.BankServiceList;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.UUID;
 
-@Controller
+@Tag(name="ShowController", description="Контроллер просмотра одной услуги")
+@RestController
 public class ShowController {
-
+    @Operation(summary = "Выводит услугу по UUID",
+            description= "Ищет услугу по UUID. При нахождении выводит все атрибуты, в противном случае - выбрасывет exception")
     @PostMapping("/show")
     public ResponseEntity<BankService> showService(@RequestParam("uuid") String uuidString, HttpSession session) {
         try {
